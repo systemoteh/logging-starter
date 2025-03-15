@@ -72,27 +72,27 @@ public class HttpLoggingFilter extends OncePerRequestFilter {
                                    String responseBody) {
 
         StringBuilder msg = new StringBuilder("\n")
-                .append("=== HTTP Log ===\n")
-                .append("Method: ").append(request.getMethod()).append("\n")
-                .append("URI: ").append(request.getRequestURI()).append("\n")
-                .append("Status: ").append(response.getStatus()).append("\n")
-                .append("Duration: ").append(duration).append("ms\n");
+                .append("HTTP Log: ")
+                .append("Method: ").append(request.getMethod()).append(", ")
+                .append("URI: ").append(request.getRequestURI()).append(", ")
+                .append("Status: ").append(response.getStatus()).append(", ")
+                .append("Duration: ").append(duration).append("ms. ");
 
         if (properties.isIncludeHeaders()) {
-            msg.append("Headers:\n")
+            msg.append("Headers: ")
                     .append(Collections.list(request.getHeaderNames())
                             .stream()
                             .map(h -> h + ": " + request.getHeader(h))
-                            .collect(Collectors.joining("\n")))
-                    .append("\n");
+                            .collect(Collectors.joining(", ")))
+                    .append(". ");
         }
 
         if (properties.isIncludeBody()) {
-            msg.append("Request Body: ").append(requestBody).append("\n")
-                    .append("Response Body: ").append(responseBody).append("\n");
+            msg.append("Request Body: ").append(requestBody).append(", ")
+                    .append("Response Body: ").append(responseBody);
         }
 
-        return msg.append("=================").toString();
+        return msg.toString();
     }
 
     private String getContent(byte[] content) {
