@@ -1,0 +1,49 @@
+plugins {
+    id 'java'
+    id 'maven-publish' // Плагин для публикации артефактов
+}
+
+group = 'ru.systemoteh'
+version = '1.9'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-configuration-processor:3.4.3'
+    implementation 'org.springframework.boot:spring-boot-starter-logging:3.4.3'
+    implementation 'org.springframework.boot:spring-boot-starter-parent:3.4.3'
+    implementation 'org.springframework.boot:spring-boot-starter-web:3.4.3'
+    implementation 'org.apache.logging.log4j:log4j-core:2.24.3'
+
+
+    compileOnly 'org.projectlombok:lombok:1.18.36'
+    annotationProcessor 'org.projectlombok:lombok:1.18.36'
+
+
+    testImplementation platform('org.junit:junit-bom:5.10.0')
+    testImplementation 'org.junit.jupiter:junit-jupiter'
+}
+
+// Настройка публикации
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            from components.java // Публикуем JAR-файл
+            // Дополнительные настройки (опционально)
+            artifactId = 'logging-starter' // Имя артефакта
+            pom {
+                name = 'My Spring Boot Starter'
+                description = 'Custom Spring Boot Starter'
+            }
+        }
+    }
+    repositories {
+        mavenLocal() // Публикация в локальный Maven-репозиторий (~/.m2/repository)
+    }
+}
+
+test {
+    useJUnitPlatform()
+}

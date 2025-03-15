@@ -1,0 +1,6 @@
+logging:
+  http:
+    enabled: true             # Включить логирование
+    level: DEBUG              # Уровень детализации (INFO, DEBUG, TRACE)
+    include-headers: true     # Включать заголовки
+    include-body: true        # Включать тело запросов/ответов
