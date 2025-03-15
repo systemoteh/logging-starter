@@ -42,7 +42,7 @@ logging:
 
 ## 🎮 Примеры использования
 Пример логов для GET-запроса
-Copy
+```text
 === HTTP Log ===
 Method: GET
 URI: /api/users
@@ -54,8 +54,9 @@ host: localhost:8080
 Request Body: [empty]
 Response Body: {"data":[...]}
 =================
+```
 Пример логов для POST-запроса
-Copy
+```text
 === HTTP Log ===
 Method: POST
 URI: /api/upload
@@ -67,6 +68,7 @@ authorization: Bearer ***
 Request Body: [file content]
 Response Body: {"status":"success"}
 =================
+```
 
 ## 🔧 Кастомизация
 Переопределение настроек
